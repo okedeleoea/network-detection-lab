@@ -1,0 +1,23 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+*.pcap
+*.evtx
+
+# Python
+__pycache__/
+*.pyc
+
+# Elastic / SIEM artifacts
+*.ndjson
+*.json.bak
+
+# Environment files
+.env
+
+# Editor
+.vscode/
+.idea/
