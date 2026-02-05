@@ -18,6 +18,11 @@ __pycache__/
 # Environment files
 .env
 
+# SIEM / Lab artifacts
+elastic-dump/
+splunk-dump/
+screenshots/tmp/
+
 # Editor
 .vscode/
 .idea/
