@@ -1,64 +1,168 @@
-# Network Discovery Lab (SOC Detection Focus)
+🚨 Network Detection Lab
 
-## Overview
-This lab demonstrates how a SOC detects and investigates internal network discovery activity and validates defensive controls that prevent lateral movement.
+(SIEM-First SOC Detection, Investigation & Gap Analysis)
 
-The focus is on detection logic, investigation workflow, and incident documentation — not exploitation.
+📌 Overview
 
-## Objectives
-- Detect internal network discovery activity
-- Analyze service enumeration behavior
-- Validate firewall controls blocking SMB
-- Document a SOC-style incident response
-- Identify detection gaps and improvement areas
+This lab demonstrates how a Security Operations Center (SOC) detects, investigates, and documents internal reconnaissance and attempted abuse activity using SIEM-style detection logic and investigation workflows.
 
-## Lab Environment
-- Kali Linux (simulated attacker)
-- Windows host (target)
-- Logs: Network + Windows Security Events
-- SIEM: Detection logic written in Elastic-style KQL (conceptual)
+The focus is detection, correlation, and incident response documentation — not exploitation.
 
-## Attack Simulation Summary 
-1. Internal network scanning and service discovery
-2. Unauthorized local user account created
-3. Attempted credential abuse via scheduled task **failed**
-4. SMB-based lateral movement **blocked by firewall**
-5. No lateral spread occurred
+This project builds directly on findings from the network-discovery phase and shows how those activities are translated into actionable detections, incident reports, and improvement plans.
 
-## Detection Summary
-- Port scan detection using Python
-- Identification of privileged account creation
-- Validation of blocked SMB traffic (TCP/445)
-- Incident confirmed as **contained**
+🎯 Objectives
 
-## Incident Outcome
-- Impact: None
-- Status: Contained
-- Severity: Low–Medium
-- Root cause: Insecure local account creation
+Detect internal network discovery activity
 
-## Detection Gaps Identified
-- No alert on failed scheduled task creation
-- No behavioral alert for service account misuse
-- Limited visibility into blocked authentication attempts
+Identify unauthorized privileged account creation
 
-## Lessons Learned
-- Preventive controls are effective when paired with visibility
-- Failed attacks still provide valuable detection signals
-- Detection coverage should include **failed abuse**, not just success
+Validate firewall controls blocking SMB lateral movement
 
-## Repository Contents
-- analysis.md — scan findings
-- investigation-timeline.md — SOC investigation steps
-- remediation.md — hardening recommendations
-- elastic-detection.md — detection logic examples
-- soar-playbook.md — response workflow
+Investigate attempted (but failed) credential abuse
 
-## Background Context
-This lab builds on foundational training from:
-- Google Cybersecurity Professional Certificate
-- Google Cloud Cybersecurity Certificate
-- IBM Cybersecurity Case Studies
-- Google Security Operations (Chronicle)
+Document a SOC-style incident response
+
+Identify detection gaps and detection maturity level
+
+🧪 Lab Environment
+Component	Details
+Analyst / Attacker	Kali Linux
+Target Host	Windows workstation
+Logs Reviewed	Network traffic, Windows Security Events
+SIEM	Elastic-style KQL (conceptual, production-aligned)
+Scope	Detection, investigation, documentation
+
+⚠️ No successful exploitation, persistence, or lateral movement occurred.
+
+🔍 Attack & Detection Summary (Accurate)
+
+Internal network scanning and service discovery
+
+Unauthorized local user account created
+
+Attempted credential abuse via scheduled task
+
+Task creation failed
+
+Attempted SMB-based lateral movement
+
+TCP/445 blocked by firewall
+
+Outcome
+
+No authentication success
+
+No persistence achieved
+
+No lateral spread
+
+🛡️ Detection Capabilities Demonstrated
+1️⃣ Network Discovery Detection
+
+Identification of port scanning behavior
+
+Correlation of multiple destination ports
+
+2️⃣ Privileged Account Monitoring
+
+Detection of local user creation
+
+Identification of administrator group modification
+
+3️⃣ Credential Abuse (Attempted)
+
+Review of failed scheduled task creation
+
+Investigation of misuse attempts without execution
+
+4️⃣ Lateral Movement Prevention
+
+Validation of blocked SMB traffic (TCP/445)
+
+Confirmation of firewall effectiveness
+
+📊 SIEM Detection Logic (Conceptual)
+Elastic KQL – Blocked SMB Attempt
+network.transport : "tcp" and
+destination.port : 445 and
+event.action : ("DROP", "BLOCK")
+
+
+Detection logic is conceptual, written to reflect how Elastic Security detections are authored in production SOCs.
+
+🚨 Incident Outcome
+Attribute	Value
+Impact	None
+Status	Contained
+Severity	Low–Medium
+Root Cause	Unauthorized local account creation attempt
+Lateral Movement	Prevented
+📉 Detection Gap Analysis
+
+Identified gaps during investigation:
+
+❌ No alert on failed scheduled task creation
+
+❌ No behavioral detection for service account misuse
+
+❌ Limited visibility into blocked authentication attempts
+
+⚠️ Correlation required manual analysis
+
+These gaps directly inform future detection engineering and automation efforts.
+
+📈 Detection Maturity Assessment
+Area	Maturity
+Reconnaissance Detection	🟡 Basic
+Privileged Account Monitoring	🟡 Partial
+Credential Abuse Detection	🔴 Weak
+Lateral Movement Prevention	🟢 Strong
+Automated Correlation	🔴 Not Implemented
+🧠 Lessons Learned
+
+Failed attacks provide valuable detection signals
+
+SOC visibility must include attempted abuse, not just success
+
+Preventive controls are strongest when paired with detection
+
+Detection gaps are actionable roadmap items, not failures
+
+🧩 MITRE ATT&CK Mapping (Partial / Prevented)
+
+TA0043 – Reconnaissance
+
+T1046 – Network Service Scanning
+
+TA0006 – Credential Access (Attempted)
+
+Failed scheduled task execution
+
+TA0008 – Lateral Movement (Prevented)
+
+T1021.002 – SMB / Admin Shares
+
+📂 Repository Structure
+network-detection-lab/
+├── README.md
+├── incident-report.md          # Formal SOC incident report
+├── detection-gap-analysis.md   # Identified detection weaknesses
+├── detection-maturity.md       # SOC maturity assessment
+├── detections/                 # KQL / detection logic examples
+└── remediation.md              # Detection & hardening recommendations
+
+🧠 Background Context
+
+This lab builds on hands-on training from:
+
+Google Cybersecurity Professional Certificate
+
+Google Cloud Cybersecurity Certificate
+
+IBM Cybersecurity Case Studies
+
+Google Security Operations (Chronicle)
+
+Focus: Translating theory into observable detections, investigations, and SOC-ready documentation.
 
 Focus: translating theory into **observable detections and controls**.
