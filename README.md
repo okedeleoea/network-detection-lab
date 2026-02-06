@@ -34,7 +34,7 @@ Scope	Detection, investigation, documentation
 
 ⚠️ No successful exploitation, persistence, or lateral movement occurred.
 
-🔍 Attack & Detection Summary (Accurate)
+🔍 Attack & Detection Summary 
 
 Internal network scanning and service discovery
 
@@ -165,4 +165,3 @@ Google Security Operations (Chronicle)
 
 Focus: Translating theory into observable detections, investigations, and SOC-ready documentation.
 
-Focus: translating theory into **observable detections and controls**.
