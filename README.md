@@ -1,3 +1,8 @@
+⚠️ This repository has been archived.
+
+This project evolved into:
+➡️ soc-detection-engineering-lifecycle-lab
+
 🚨 Network Detection Lab
 
 (SIEM-First SOC Detection, Investigation & Gap Analysis)
