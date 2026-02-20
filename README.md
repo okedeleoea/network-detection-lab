@@ -4,8 +4,14 @@ This project evolved into:
 ➡️ soc-detection-engineering-lifecycle-lab
 
 🚨 Network Detection Lab
+## Background Context
 
-(SIEM-First SOC Detection, Investigation & Gap Analysis)
+This detection lab builds on reconnaissance and discovery activity documented in:
+
+👉 **network-discovery-lab**  
+https://github.com/okedeleoea/network-discovery-lab
+
+The focus here is SIEM-first alerting, triage, investigation, and incident reporting.
 
 📌 Overview
 
